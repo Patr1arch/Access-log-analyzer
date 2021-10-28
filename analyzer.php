@@ -20,9 +20,15 @@ function formatDate(&$pt, &$rep, &$str){
         return preg_replace($pt, $rep, $str);
 }
 
-// TODO: Test some command inputs and handle scripts without params
+// TODO: Test some command inputs
 $options = getopt("u:t:");
 var_dump($options);
+if (empty($options['u']) || empty($options['t']))
+        throw new Exception("Required command parameters are not set");
+if (!preg_match('/\d+?(.\d*)/', $options['u']))
+        throw new Exception("Required command parameter for -u is not a number");
+if (!preg_match('/\d+?(.\d*)/', $options['t']))
+        throw new Exception("Required command parameter for -t is not a number");
 $parser = new LogParser();
 $parser->addPattern('%c', '(?P<caller>@[\w?-]+|-)');
 $parser->addPattern('%g', '(?P<priority>[a-zA-Z]+\:\d+)');
