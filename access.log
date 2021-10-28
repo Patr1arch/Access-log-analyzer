@@ -1,1 +1,4 @@
-example
+192.168.32.181 - - [14/06/2017:10:00:00 +1000] "PUT /rest/v1.4/documents?zone=default&_rid=6076537c HTTP/1.1" 200 2 44.510983 "-" "@list-item-updater" prio:0
+192.168.32.181 - - [14/06/2017:11:00:00 +1000] "PUT /rest/v1.4/documents?zone=default&_rid=7ae28555 HTTP/1.1" 200 2 23.251219 "-" "@list-item-updater" prio:0
+
+192.168.32.181 - - [14/06/2017:12:00:00 +1000] "PUT /rest/v1.4/documents?zone=default&_rid=e356713 HTTP/1.1" 500 2 30.164372 "-" "@list-item-updater" prio:0

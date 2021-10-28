@@ -18,7 +18,7 @@ $ sudo service docker start
 $ git clone https://github.com/Patr1arch/Access-log-analyzer.git
 $ cd Access-log-analyzer/
 $ sudo docker build -t analyzer . 
-$ sudo docker run -ti -v path/to/log/access.log:/access.log analyzer /bin/sh
+$ sudo docker run -ti --rm -v path/to/log/access.log:/access.log analyzer /bin/bash
 ```
 where path/to/log -- path to directory where access log is stored. By default example access log stores in cloned directory, so you can define path/to/log as $(pwd)
 
