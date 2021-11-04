@@ -15,29 +15,27 @@ $replacements = [
 ];
 
 // strtotime not work with DD/MM/YYYY, 'cause it's ambiguous with American datetime MM/DD/YYYY
-// TODO: Add tests for it
 function formatDate(&$pt, &$rep, &$str){
         return preg_replace($pt, $rep, $str);
 }
 
-// TODO: Test some command inputs
 $options = getopt("u:t:");
 if (!isset($options['u']) || !isset($options['t']))
-        throw new Exception("Required command parameters are not set");
+        throw new InvalidArgumentException("Required command parameters are not set");
 if (strval(floatval($options['u'])) != $options['u'])
-        throw new Exception("Required command parameter for -u is not a number");
+        throw new InvalidArgumentException("Required command parameter for -u is not a number");
 if (strval(floatval($options['t'])) != $options['t'])
-        throw new Exception("Required command parameter for -t is not a number");
+        throw new InvalidArgumentException("Required command parameter for -t is not a number");
 $parser = new LogParser();
 $parser->addPattern('%c', '(?P<caller>@[\w?-]+|-)');
-$parser->addPattern('%g', '(?P<priority>[a-zA-Z]+\:\d+)');
+$parser->addPattern('%g', '(?P<priority>[a-zA-Z]+\:\d+)|-');
 $parser->setFormat('%h %l %u %t "%r" %>s %b %T "%{Referer}i" "%c" %g');
 $startTime = null;
 $endTime = null;
 $currentAccess = 0;
 $count = 0;
 $notFailCount = 0;
-while(!feof(STDIN)){ // TODO: Empty input?
+while(!feof(STDIN)){
 	$line = fgets(STDIN);
 	if ($line == '' || ctype_space($line)) 
 		continue;
