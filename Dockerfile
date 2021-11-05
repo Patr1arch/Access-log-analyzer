@@ -12,3 +12,4 @@ RUN docker-php-ext-install zip
 RUN apt-get -y install zip unzip
 RUN apt-get -y install git && composer require phpunit/phpunit && composer update
 RUN echo "alias phpunit='./vendor/bin/phpunit'" >> ~/.bashrc
+# RUN apt-get -y install vim
